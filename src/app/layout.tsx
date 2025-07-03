@@ -1,29 +1,23 @@
 
 import type { Metadata } from 'next';
-import { Crimson_Text, Fleur_De_Leah, Great_Vibes } from 'next/font/google';
+import { Great_Vibes, Bodoni_Moda } from 'next/font/google';
 import './globals.css';
-import { Toaster } from "@/components/ui/toaster";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Toaster } from '@/components/ui/toaster';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { AppProviders } from '@/components/AppProviders';
 import { cn } from '@/lib/utils';
-
-const crimsonText = Crimson_Text({
-  subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-crimson-text',
-});
-
-const fleurDeLeah = Fleur_De_Leah({
-  subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-fleur-de-leah',
-});
 
 const greatVibes = Great_Vibes({
   subsets: ['latin'],
   weight: ['400'],
   variable: '--font-great-vibes',
+});
+
+const bodoniModa = Bodoni_Moda({
+  subsets: ['latin'],
+  weight: ['400', '900'],
+  style: ['normal', 'italic'],
+  variable: '--font-bodoni-moda',
 });
 
 export const metadata: Metadata = {
@@ -32,22 +26,28 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon-32x32.png',
   },
+  metadataBase: new URL('https://fonts.googleapis.com'),
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body 
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,900;1,400;1,900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body
         className={cn(
-          "font-body antialiased",
-          crimsonText.variable,
-          fleurDeLeah.variable,
+          'font-body antialiased',
+          bodoniModa.variable,
           greatVibes.variable
-        )} 
+        )}
         suppressHydrationWarning
       >
         <AppProviders>

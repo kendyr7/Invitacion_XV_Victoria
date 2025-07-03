@@ -11,8 +11,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['var(--font-crimson-text)', 'serif'],
-        headline: ['var(--font-crimson-text)', 'serif'],
+        body: ['var(--font-bodoni-moda)', 'serif'],
+        headline: ['var(--font-bodoni-moda)', 'serif'],
         'fleur-de-leah': ['var(--font-fleur-de-leah)', 'cursive'],
         'great-vibes': ['var(--font-great-vibes)', 'cursive'],
         delistan: ['Delistan', 'cursive'],

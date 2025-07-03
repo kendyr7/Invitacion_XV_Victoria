@@ -169,18 +169,18 @@ export default function HomePage() {
           className="absolute top-0 left-0 opacity-80 z-0 animate-in fade-in duration-1000 delay-100"
           data-ai-hint="floral corner decoration"
         />
-        <div className="mt-12 relative z-10 flex flex-col items-center text-center space-y-8 sm:space-y-10 p-4 sm:p-8">
         
+        <div className="relative z-10 flex flex-col items-center text-center space-y-8 sm:space-y-10 p-4 sm:p-8 mt-[14rem]">
+          <div className="animate-in fade-in duration-1000 delay-400 mb-4 sm:mb-6">
+            <p className="font-great-vibes text-7xl sm:text-9xl text-primary">Victoria Pérez</p>
+          </div>
+
           <div className="flex flex-col items-center mt-8 mb-6 animate-in fade-in duration-1000 delay-300">
             <Image src="/tiara.png" alt="Tiara" width={100} height={100} data-ai-hint="tiara crown" className="drop-shadow-lg"/>
             <p className="font-headline text-3xl sm:text-4xl text-primary mt-2 tracking-widest">Mis XV Años</p>
           </div>
 
-          <div className="animate-in fade-in duration-1000 delay-400 mb-4 sm:mb-6">
-            <p className="font-great-vibes text-7xl sm:text-9xl text-primary">Victoria Pérez</p>
-          </div>
-
-          <MusicPlayer audioSrc={audioSrc} autoPlay={isOpened} className="animate-in fade-in duration-1000 delay-500" />
+          {/* <MusicPlayer audioSrc={audioSrc} autoPlay={isOpened} className="animate-in fade-in duration-1000 delay-500" /> */}
           
           <Card className="bg-transparent border-none shadow-none w-full animate-in fade-in duration-1000 delay-200">
             <CardContent className="font-body text-lg sm:text-xl text-foreground/80 space-y-1 pt-6">
@@ -262,7 +262,7 @@ export default function HomePage() {
             </SectionCard>
           </div>
 
-          <div className="w-full animate-in fade-in duration-1000 delay-1200">
+          {/*<div className="w-full animate-in fade-in duration-1000 delay-1200">
             <SectionCard 
               title="Itinerario de Actividades" 
               icon={<ListChecks size={28} className="text-primary"/>}
@@ -287,7 +287,7 @@ export default function HomePage() {
                 </div>
               </div>
             </SectionCard>
-          </div>
+          </div>*/}
 
           <div className="w-full animate-in fade-in duration-1000 delay-[1300ms]">
             <SectionCard 
@@ -364,13 +364,13 @@ export default function HomePage() {
               </p>
             </div>
             <div className="animate-in fade-in duration-1000 delay-[400ms] mt-4">
-              <p className="font-body text-lg sm:text-xl text-foreground/80 text-center px-4">¡Gracias por acompañarme <br/> en este día tan especial! <br/> ❤️</p>
+              <p className="font-body text-lg sm:text-xl text-foreground/80 text-center px-4">¡Gracias por acompañarme <br/> en este día tan especial! </p>
             </div>
           </div>
         </div>
 
         {/* Footer */}
-        <footer className="w-full text-center py-4 bg-background/80 dark:bg-neutral-900/80 text-foreground/60 text-xs bg-[url('/paper-texture.jpg')] bg-cover bg-center backdrop-blur-md">
+        <footer className="w-full text-center py-4 bg-background/80 dark:bg-neutral-900/80 text-foreground/60 text-xs bg-[url('/flowers_deco/paper-texture.jpg')] bg-cover bg-center backdrop-blur-md">
           <p>Creado por Kendyr Quintanilla </p>
         </footer>
 
