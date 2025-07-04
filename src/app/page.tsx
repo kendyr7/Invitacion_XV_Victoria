@@ -141,7 +141,6 @@ export default function HomePage() {
             data-ai-hint="envelope mail"
             priority
           />
-          <p className="mt-4 text-lg text-foreground/80 font-headline">Haz clic para abrir la invitación</p>
         </div>
       </main>
     );
@@ -172,12 +171,14 @@ export default function HomePage() {
         
         <div className="relative z-10 flex flex-col items-center text-center space-y-8 sm:space-y-10 p-4 sm:p-8 mt-[14rem]">
           <div className="animate-in fade-in duration-1000 delay-400 mb-4 sm:mb-6">
-            <p className="font-great-vibes text-7xl sm:text-9xl text-primary">Victoria Pérez</p>
+            <p className="font-great-vibes text-9xl sm:text-9xl text-primary">Victoria</p>
+            <p className="font-great-vibes text-8xl sm:text-9xl text-primary">Pérez</p>
+
           </div>
 
           <div className="flex flex-col items-center mt-8 mb-6 animate-in fade-in duration-1000 delay-300">
             <Image src="/tiara.png" alt="Tiara" width={100} height={100} data-ai-hint="tiara crown" className="drop-shadow-lg"/>
-            <p className="font-headline text-3xl sm:text-4xl text-primary mt-2 tracking-widest">Mis XV Años</p>
+            <p className="font-headline text-1xl sm:text-2xl text-primary mt-2 tracking-widest">MIS XV AÑOS</p>
           </div>
 
           {/* <MusicPlayer audioSrc={audioSrc} autoPlay={isOpened} className="animate-in fade-in duration-1000 delay-500" /> */}
@@ -192,22 +193,26 @@ export default function HomePage() {
               <p>este capítulo inolvidable en mi vida</p>
             </CardContent>
           </Card>
-
+          <br />
+          <br />
           <EventDateDisplay 
             monthName="Julio"
             dayName="Domingo"
             dayNumber="27"
             year="2025"
-            className="animate-in fade-in duration-1000 delay-700 text-primary"
+            className="animate-in fade-in duration-1000 delay-700 text-primary mb-12"
           />
-
-          <div className="w-full max-w-md animate-in fade-in duration-1000 delay-800 mt-4 mb-4">
-            <div className="flex flex-col items-center">
-              <p className="font-headline text-lg sm:text-xl text-primary mt-2 tracking-widest">Tan solo faltan</p>
+          <br />
+          <br />
+          <br />
+          <br />
+          <Card className="w-full max-w-md animate-in fade-in duration-1000 delay-800 mt-12 mb-4 bg-transparent border-none">
+            <CardContent className="flex flex-col items-center">
+              <p className="font-headline text-lg sm:text-xl text-foreground mt-2 tracking-widest">Tan solo faltan</p>
               <CountdownTimer targetDate={eventTargetDate} />
-              <p className="font-headline text-lg sm:text-xl text-primary mt-2 tracking-widest">para este dia tan especial</p>
-            </div>
-          </div>
+              <p className="font-headline text-lg sm:text-xl text-foreground mt-2 tracking-widest">para este dia tan especial</p>
+            </CardContent>
+          </Card>
 
           <div className="animate-in fade-in duration-1000 delay-900">
             <Image
@@ -221,7 +226,7 @@ export default function HomePage() {
 
           <Card className="bg-transparent border-none shadow-none w-full animate-in fade-in duration-1000 delay-600">
             <CardHeader className="pb-3 pt-5">
-              <CardTitle className="font-headline text-2xl sm:text-3xl text-primary flex items-center justify-center text-center">
+              <CardTitle className="font-headline text-2xl sm:text-3xl text-foreground flex items-center justify-center text-center">
                 ¿Cuándo y dónde?
               </CardTitle>
             </CardHeader>
@@ -234,7 +239,7 @@ export default function HomePage() {
             <SectionCard
               title="Ceremonia Religiosa"
               locationButton={{ text: "Ver Ubicación", url: "https://maps.app.goo.gl/urnxoQk9w1md1kYGA" }}
-              titleClassName="text-primary"
+              titleClassName="text-foreground"
             >
               <div className="flex flex-col items-center space-y-2 mb-3">
                 <Image src="/church.png" alt="Iglesia Icon" width={40} height={40} className="shrink-0" data-ai-hint="church building"/>
@@ -249,8 +254,8 @@ export default function HomePage() {
           <div className="w-full animate-in fade-in duration-1000 delay-1100">
             <SectionCard 
               title="Recepción"
-              locationButton={{ text: "Ver Ubicación", url: "https://maps.app.goo.gl/2nyhPou1JRjuhLdq9" }}
-              titleClassName="text-primary"
+              locationButton={{ text: "Ver Ubicación", url: "https://maps.app.goo.gl/NirirnL3kUby84ty7" }}
+              titleClassName="text-foreground"
             >
               <div className="flex flex-col items-center space-y-2 mb-3">
                 <Image src="/champagne.png" alt="champagne Icon" width={40} height={40} className="shrink-0" data-ai-hint="champagne"/>
@@ -288,23 +293,28 @@ export default function HomePage() {
               </div>
             </SectionCard>
           </div>*/}
-
+          <br />
+          <br />
+          <br />
           <div className="w-full animate-in fade-in duration-1000 delay-[1300ms]">
             <SectionCard 
               title="Código de Vestimenta"
-              titleClassName="text-primary"
+              titleClassName="text-foreground"
             >
               <div><p className="text-base sm:text-lg text-foreground/90">Formal</p></div>
 
               <Image src="/dress-code-fix.png" alt="Código de Vestimenta Formal" width={300} height={300} className="mx-auto mt-3 mb-3" data-ai-hint="formal attire" />
             </SectionCard>
           </div>
+          <br />
+          <br />
+          <br />
 
           <div className="w-full animate-in fade-in duration-1000 delay-[1400ms]">
             <SectionCard
               title="Colores Reservados"
-              icon={<Palette size={28} className="text-primary"/>}
-              titleClassName="text-primary"
+              icon={<Brush size={28} className="text-foreground"/>}
+              titleClassName="text-foreground"
             >
               <div className="flex justify-center space-x-3 mt-2">
                 <Image src="/colors/color1.jpeg" alt="Color Reservado 1" width={50} height={50} className="rounded-md shadow-md" data-ai-hint="color swatch" />
@@ -316,13 +326,15 @@ export default function HomePage() {
               </p>
             </SectionCard>
           </div>
-
+          <br />
+          <br />
+          <br />
 
           <div className="w-full animate-in fade-in duration-1000 delay-[1500ms]">
             <SectionCard 
               title="Regalos" 
-              icon={<Gift size={28} className="text-primary"/>}
-              titleClassName="text-primary"
+              icon={<Gem size={28} className="text-foreground"/>}
+              titleClassName="text-foreground"
             >
               <p className="flex items-center justify-center gap-2">
                 <span>Agradecemos sus muestras de cariño en sobre</span>
@@ -360,9 +372,12 @@ export default function HomePage() {
                 )}
               </Button>
               <p className="text-sm text-foreground/80 mt-2 text-center">
-                Por favor, confirma antes del 15 de Julio.
+                
               </p>
             </div>
+          <br />
+          <br />
+          <br />
             <div className="animate-in fade-in duration-1000 delay-[400ms] mt-4">
               <p className="font-body text-lg sm:text-xl text-foreground/80 text-center px-4">¡Gracias por acompañarme <br/> en este día tan especial! </p>
             </div>
@@ -378,7 +393,7 @@ export default function HomePage() {
       {showBackToTop && (
         <Button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 h-12 w-12 rounded-full bg-primary/80 backdrop-blur-sm p-0 text-primary-foreground shadow-lg transition-transform hover:scale-110 hover:bg-primary"
+          className="fixed bottom-8 right-8 z-50 h-12 w-12 rounded-full bg-foreground/80 backdrop-blur-sm p-0 text-primary-foreground shadow-lg transition-transform hover:scale-110 hover:bg-primary"
           aria-label="Volver al inicio"
         >
           <ArrowUp className="h-6 w-6" />
