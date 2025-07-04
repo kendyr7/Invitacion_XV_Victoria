@@ -322,7 +322,7 @@ export default function HomePage() {
                 <Image src="/colors/color3.jpeg" alt="Color Reservado 3" width={50} height={50} className="rounded-md shadow-md" data-ai-hint="color swatch" />
               </div> <br />
               <p className="text-foreground/70 mt-3 px-4">
-                Con cariño, te pedimos considerar estos tonos como reservados para la quinceañera y su corte, permitiéndoles brillar en este día especial.
+                Con mucho aprecio, les solicitamos que reserven estos colores exclusivamente para la quinceañera y su corte, para que puedan destacar y lucir radiantes en este día tan especial.
               </p>
             </SectionCard>
           </div>
@@ -379,14 +379,14 @@ export default function HomePage() {
           <br />
           <br />
             <div className="animate-in fade-in duration-1000 delay-[400ms] mt-4">
-              <p className="font-body text-lg sm:text-xl text-foreground/80 text-center px-4">¡Gracias por acompañarme <br/> en este día tan especial! </p>
+              <p className="font-body text-lg sm:text-xl text-foreground/80 text-center px-4">¡Te esperamos! </p>
             </div>
           </div>
         </div>
 
         {/* Footer */}
         <footer className="w-full text-center py-4 bg-background/80 dark:bg-neutral-900/80 text-foreground/60 text-xs bg-[url('/flowers_deco/paper-texture.jpg')] bg-cover bg-center backdrop-blur-md">
-          <p>Creado por Kendyr Quintanilla </p>
+          <p className="italic">Creado por Kendyr Quintanilla </p>
         </footer>
 
       </div>
