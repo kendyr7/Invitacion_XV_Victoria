@@ -15,41 +15,14 @@ const AnimatedName: React.FC<AnimatedNameProps> = ({
   className,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          // Reset animation after it completes
-          setTimeout(() => {
-            setIsVisible(false);
-          }, 3000);
-        } else {
-          setIsVisible(false);
-        }
-      },
-      {
-        threshold: 0.3,
-        rootMargin: '50px'
-      }
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
-      }
-    };
+    // Animar solo una vez al montar
+    setIsVisible(true);
   }, []);
 
   return (
     <div 
-      ref={containerRef}
       className={cn("mb-4 sm:mb-6 text-center", className)}
     >
       {/* First Name - Victoria */}

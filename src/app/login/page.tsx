@@ -62,13 +62,7 @@ export default function LoginPage() {
         <div className="text-center mb-8 animate-in fade-in duration-1000">
           <div className="flex justify-center mb-4">
             <div className="relative">
-              <Image 
-                src="/tiara.png" 
-                alt="Tiara" 
-                width={80} 
-                height={80} 
-                className="animate-bounce-slow"
-              />
+
             </div>
           </div>
           <h1 className="text-3xl font-great-vibes text-primary mb-2">Panel de Administración</h1>

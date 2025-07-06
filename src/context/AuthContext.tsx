@@ -26,7 +26,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
   const login = (user: string, pass: string): boolean => {
     const validCredentials: Record<string, string> = {
       'kendyr7@gmail.com': '123',
-      'veronica': 'nic2025',
+      'veronica': 'victoria2025',
     };
 
     if (validCredentials[user] === pass) {

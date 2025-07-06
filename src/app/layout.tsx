@@ -21,11 +21,29 @@ const bodoniModa = Bodoni_Moda({
 });
 
 export const metadata: Metadata = {
-  title: 'Invitacion XV Valentina',
-  description: 'An elegant invitation to our special event.',
-  icons: {
-    icon: '/favicon-32x32.png',
+  title: 'XV Años - Victoria Pérez',
+  description: 'Una elegante invitación para celebrar los XV años de Victoria Pérez.',
+  keywords: ['XV años', 'quinceañera', 'Victoria Pérez', 'invitación', 'fiesta'],
+  authors: [{ name: 'Kendyr Quintanilla' }],
+  creator: 'Kendyr Quintanilla',
+  publisher: 'XV Años Victoria Pérez',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  manifest: '/site.webmanifest',
   metadataBase: new URL('https://fonts.googleapis.com'),
 };
 

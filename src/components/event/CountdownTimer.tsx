@@ -89,7 +89,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
             <span className="text-3xl sm:text-5xl font-headline font-bold text-foreground text-visible">
               {String(component.value).padStart(2, '0')}
             </span>
-            <span className="text-xs sm:text-sm text-secondary uppercase tracking-wider font-body text-visible font-bold ml-1">
+            <span className="text-xs sm:text-sm text-primary uppercase tracking-wider font-body text-visible font-bold ml-1">
               {component.label}
             </span>
           </span>

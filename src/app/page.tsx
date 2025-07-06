@@ -77,6 +77,7 @@ const useScrollAnimation = () => {
 
 export default function HomePage() {
   const [isOpened, setIsOpened] = useState(false);
+  const [isEnvelopeAnimating, setIsEnvelopeAnimating] = useState(false);
   const [guestName, setGuestName] = useState('');
   const [isConfirming, setIsConfirming] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -104,7 +105,12 @@ export default function HomePage() {
   }, [isOpened]);
   
   const handleOpenEnvelope = () => {
-    setIsOpened(true);
+    setIsEnvelopeAnimating(true);
+    // Después de la animación del sobre, mostrar la invitación
+    setTimeout(() => {
+      setIsOpened(true);
+      setIsEnvelopeAnimating(false);
+    }, 800); // 800ms para la animación del sobre
   };
 
   const scrollToTop = () => {
@@ -172,7 +178,13 @@ export default function HomePage() {
         className="flex min-h-screen flex-col items-center justify-center bg-background p-4 cursor-pointer" 
         onClick={handleOpenEnvelope}
       >
-        <div className="text-center animate-in fade-in duration-1000">
+        <div className={`
+          text-center transition-all duration-800 ease-in-out
+          ${isEnvelopeAnimating 
+            ? 'opacity-0 -translate-y-8 scale-95' 
+            : 'opacity-100 translate-y-0 scale-100'
+          }
+        `}>
           <Image 
             src="/envelope.png"
             alt="An envelope, click to open invitation"
@@ -188,7 +200,11 @@ export default function HomePage() {
   }
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground relative overflow-auto sm:overflow-hidden">
+    <main className={`
+      flex flex-col items-center justify-center min-h-screen bg-background text-foreground relative overflow-auto sm:overflow-hidden
+      transition-all duration-1000 ease-out
+      ${isOpened && !isEnvelopeAnimating ? 'opacity-100' : 'opacity-0'}
+    `}>
       <Image 
         src="/flowers_deco/elegant-floral-background.jpeg"
         fill
@@ -433,9 +449,30 @@ export default function HomePage() {
               icon={<Gem size={28} className="text-foreground"/>}
               titleClassName="text-foreground"
             >
-              <p className="flex items-center justify-center gap-2">
+              <p className="flex items-center justify-center gap-2 mb-4">
                 <span>Agradecemos sus muestras de cariño en sobre</span>
               </p>
+              
+              {/* Animación del sobre */}
+              <div className="flex justify-center">
+                <div className="relative group">
+                  <Image 
+                    src="/envelope.png"
+                    alt="Sobre para regalos"
+                    width={80}
+                    height={60}
+                    className="transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:rotate-2 animate-pulse-slow"
+                  />
+                  
+                  {/* Efecto de brillo */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%]"></div>
+                  
+                  {/* Icono de regalo flotante */}
+                  <div className="absolute -top-2 -right-2 bg-primary rounded-full p-1 animate-bounce-slow">
+                    <Gift className="h-4 w-4 text-primary-foreground" />
+                  </div>
+                </div>
+              </div>
             </SectionCard>
           </div>
         </div>
@@ -494,7 +531,7 @@ export default function HomePage() {
 
         {/* Footer */}
         <footer className="w-full text-center py-4 bg-background/80 dark:bg-neutral-900/80 text-foreground/60 text-xs bg-[url('/flowers_deco/paper-texture1.jpg')] bg-cover bg-center backdrop-blur-md">
-          <p className="italic animate-fade-in-up">Creado por Kendyr Quintanilla </p>
+          <p className="italic animate-fade-in-up">© Creado por Kendyr Quintanilla - 2025 </p>
         </footer>
 
       </div>
