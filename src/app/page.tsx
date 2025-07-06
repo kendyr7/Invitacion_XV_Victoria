@@ -1,4 +1,3 @@
-
 'use client';
 
 import Image from 'next/image';
@@ -37,6 +36,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { useToast } from "@/hooks/use-toast";
 import { addAttendee } from '@/actions/attendees';
+import Head from 'next/head';
 
 // Hook personalizado para animaciones de scroll
 const useScrollAnimation = () => {
@@ -205,6 +205,15 @@ export default function HomePage() {
       transition-all duration-1000 ease-out
       ${isOpened && !isEnvelopeAnimating ? 'opacity-100' : 'opacity-0'}
     `}>
+      <Head>
+        <meta property="og:title" content="Invitación XV Valentina" />
+        <meta property="og:description" content="¡Estás invitado a los XV años de Valentina! Haz clic para ver la invitación." />
+        <meta property="og:image" content="/og-image.png" />
+        <meta property="og:url" content="invitacion-xv-victoria.vercel.app/" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="/og-image.png" />
+      </Head>
       <Image 
         src="/flowers_deco/elegant-floral-background.jpeg"
         fill
@@ -458,7 +467,7 @@ export default function HomePage() {
                 <div className="relative group">
                   <Image 
                     src="/envelope.png"
-                    alt="Sobre para regalos"
+                    alt="An envelope, click to open invitation"
                     width={80}
                     height={60}
                     className="transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:rotate-2 animate-pulse-slow"
