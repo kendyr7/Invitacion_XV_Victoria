@@ -22,7 +22,7 @@ const bodoniModa = Bodoni_Moda({
 
 export const metadata: Metadata = {
   title: 'XV Años - Victoria Pérez',
-  description: 'Una elegante invitación para celebrar los XV años de Victoria Pérez.',
+  description: 'Te invito a ser parte de este capítulo.',
   keywords: ['XV años', 'quinceañera', 'Victoria Pérez', 'invitación', 'fiesta'],
   authors: [{ name: 'Kendyr Quintanilla' }],
   creator: 'Kendyr Quintanilla',
