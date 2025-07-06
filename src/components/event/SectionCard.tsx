@@ -3,28 +3,33 @@
 import type { ReactNode } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { MapPin } from 'lucide-react'; 
+import { MapPin, Navigation } from 'lucide-react'; 
+
+interface LocationButton {
+  text: string;
+  url: string;
+  icon?: ReactNode;
+}
 
 interface SectionCardProps {
   title: string;
   icon?: ReactNode;
   children: ReactNode;
-  locationButton?: {
-    text: string;
-    url: string;
-  };
+  locationButton?: LocationButton;
+  locationButtons?: LocationButton[];
   className?: string;
   titleClassName?: string;
   contentClassName?: string;
   animationDelay?: string;
 }
 
-const SectionCard: React.FC<SectionCardProps> = ({ title, icon, children, locationButton, className, titleClassName, contentClassName, animationDelay }) => {
-  const handleLocationClick = () => {
-    if (locationButton) {
-      window.open(locationButton.url, '_blank', 'noopener,noreferrer');
-    }
+const SectionCard: React.FC<SectionCardProps> = ({ title, icon, children, locationButton, locationButtons, className, titleClassName, contentClassName, animationDelay }) => {
+  const handleLocationClick = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
+
+  // Use locationButtons if provided, otherwise fall back to single locationButton
+  const buttons = locationButtons || (locationButton ? [locationButton] : []);
 
   return (
     <Card 
@@ -33,22 +38,25 @@ const SectionCard: React.FC<SectionCardProps> = ({ title, icon, children, locati
     >
       <CardHeader className="pb-3 pt-5">
         <CardTitle className={`font-headline text-2xl sm:text-3xl text-primary flex items-center justify-center text-center ${titleClassName}`}>
-          {icon && <span className="mr-3 text-primary">{icon}</span>}
+          {icon && <span className="mr-3 text-accent">{icon}</span>}
           {title}
         </CardTitle>
       </CardHeader>
       <CardContent className={`font-body text-base sm:text-lg text-foreground/90 space-y-2 text-center ${contentClassName}`}>
         {children}
-        {locationButton && (
-          <div className="mt-4 text-center">
-            <Button
-              onClick={handleLocationClick}
-              variant="outline"
-              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground border-secondary hover:border-secondary/90"
-            >
-              <MapPin className="mr-2 h-4 w-4" />
-              {locationButton.text}
-            </Button>
+        {buttons.length > 0 && (
+          <div className="mt-4 text-center space-y-2">
+            {buttons.map((button, index) => (
+              <Button
+                key={index}
+                onClick={() => handleLocationClick(button.url)}
+                variant="outline"
+                className="bg-link-secondary hover:bg-link-secondary/90 text-primary-foreground border-link-secondary hover:border-link-secondary/90 mx-1"
+              >
+                {button.icon || <MapPin className="mr-2 h-4 w-4" />}
+                {button.text}
+              </Button>
+            ))}
           </div>
         )}
       </CardContent>

@@ -153,7 +153,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ audioSrc, className, autoPlay
           variant="outline" 
           size="icon" 
           onClick={togglePlayPause} 
-          className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full h-14 w-14 border-2 border-primary shadow-lg"
+          className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full h-14 w-14 border-2 border-accent shadow-lg"
           aria-label={isPlaying ? "Pause music" : "Play music"}
           disabled={!audioSrc || duration === 0 && !isPlaying}
         >
@@ -172,7 +172,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ audioSrc, className, autoPlay
           disabled={duration === 0}
         />
         {(duration > 0 || currentTime > 0) && (
-          <div className="text-xs text-primary font-medium w-full flex justify-between px-1">
+          <div className="text-xs text-accent font-medium w-full flex justify-between px-1">
             <span>{formatTime(currentTime)}</span>
             <span>{formatTime(duration)}</span>
           </div>

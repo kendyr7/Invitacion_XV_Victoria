@@ -69,6 +69,8 @@ export default {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
+        'link-secondary': 'hsl(var(--link-secondary))',
+        decorative: 'hsl(var(--decorative))',
       },
       borderRadius: {
         lg: 'var(--radius)',

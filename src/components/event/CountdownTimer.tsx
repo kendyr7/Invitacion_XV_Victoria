@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -54,13 +53,23 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
   if (!isClient) {
     // Render placeholder or skeleton on server/initial client render
     return (
-      <div className="grid grid-cols-4 gap-4 text-center animate-in fade-in duration-1000 delay-500">
-        {[...Array(4)].map((_, i) => (
-          <div key={i} className="p-4 rounded-lg">
-            <div className="text-3xl sm:text-4xl font-bold text-foreground animate-pulse">--</div>
-            <div className="text-xs sm:text-sm text-foreground uppercase tracking-wider">Loading...</div>
-          </div>
-        ))}
+      <div className="inline-block text-center animate-in fade-in duration-1000 delay-500">
+        <span className="inline-block mx-3 sm:mx-4">
+          <span className="text-3xl sm:text-5xl font-bold text-foreground animate-pulse">--</span>
+          <span className="text-xs sm:text-sm text-foreground uppercase tracking-wider ml-1">Loading...</span>
+        </span>
+        <span className="inline-block mx-3 sm:mx-4">
+          <span className="text-3xl sm:text-5xl font-bold text-foreground animate-pulse">--</span>
+          <span className="text-xs sm:text-sm text-foreground uppercase tracking-wider ml-1">Loading...</span>
+        </span>
+        <span className="inline-block mx-3 sm:mx-4">
+          <span className="text-3xl sm:text-5xl font-bold text-foreground animate-pulse">--</span>
+          <span className="text-xs sm:text-sm text-foreground uppercase tracking-wider ml-1">Loading...</span>
+        </span>
+        <span className="inline-block mx-3 sm:mx-4">
+          <span className="text-3xl sm:text-5xl font-bold text-foreground animate-pulse">--</span>
+          <span className="text-xs sm:text-sm text-foreground uppercase tracking-wider ml-1">Loading...</span>
+        </span>
       </div>
     );
  }
@@ -73,17 +82,17 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-4 text-center animate-in fade-in duration-1000 delay-500 w-full max-w-md">
+    <div className="inline-block text-center animate-in fade-in duration-1000 delay-500 w-full text-visible">
       {timerComponents.map((component, index) => (
         component.value !== undefined && (
-          <div key={index} className="p-3 sm:p-4 rounded-lg transform transition-all hover:scale-120">
-            <div className="text-4xl sm:text-6xl font-headline font-bold text-foreground mb-2">
-              {String(component.value).padStart(2, '0')}&nbsp;
-            </div>
-            <div className="text-sm sm:text-base text-primary uppercase tracking-wider font-body text-center mx-auto">
+          <span key={index} className="inline-block mx-4 sm:mx-4 transform transition-all hover:scale-110">
+            <span className="text-3xl sm:text-5xl font-headline font-bold text-foreground text-visible">
+              {String(component.value).padStart(2, '0')}
+            </span>
+            <span className="text-xs sm:text-sm text-secondary uppercase tracking-wider font-body text-visible font-bold ml-1">
               {component.label}
-            </div>
-          </div>
+            </span>
+          </span>
         )
       ))}
     </div>

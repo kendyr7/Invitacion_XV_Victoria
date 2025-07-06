@@ -2,13 +2,14 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import MusicPlayer from '@/components/event/MusicPlayer';
 import CountdownTimer from '@/components/event/CountdownTimer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import SectionCard from '@/components/event/SectionCard';
 import ActivityTimelineItem from '@/components/event/ActivityTimelineItem';
 import EventDateDisplay from '@/components/event/EventDateDisplay';
+import AnimatedName from '@/components/event/AnimatedName';
 import { Input } from '@/components/ui/input';
 import { 
   Gift, 
@@ -29,11 +30,50 @@ import {
   Bus,
   Mail,
   ArrowUp,
-  Loader2
+  Loader2,
+  Navigation,
+  MapPin
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from "@/hooks/use-toast";
 import { addAttendee } from '@/actions/attendees';
+
+// Hook personalizado para animaciones de scroll
+const useScrollAnimation = () => {
+  const [visibleElements, setVisibleElements] = useState(new Set());
+  
+  useEffect(() => {
+    // Inicializar todos los elementos como visibles
+    const elements = document.querySelectorAll('[data-animate]');
+    const initialVisible = new Set();
+    elements.forEach(el => {
+      if (el.id) {
+        initialVisible.add(el.id);
+      }
+    });
+    setVisibleElements(initialVisible);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleElements(prev => new Set([...prev, entry.target.id]));
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '50px'
+      }
+    );
+
+    elements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
+  return visibleElements;
+};
 
 export default function HomePage() {
   const [isOpened, setIsOpened] = useState(false);
@@ -43,6 +83,7 @@ export default function HomePage() {
   const { toast } = useToast();
   const audioSrc = "/audio/paradise-coldplay.mp3"; 
   const eventTargetDate = "2025-07-27T19:00:00-06:00";
+  const visibleElements = useScrollAnimation();
 
   useEffect(() => {
     if (!isOpened) return;
@@ -115,14 +156,14 @@ export default function HomePage() {
   const iconSizeTimeline = 28; 
 
   const timelineEventsNew = [
-    { time: "7:00 PM", title: "Bienvenida", icon: <Martini size={iconSizeTimeline} className="text-primary"/> },
-    { time: "7:30 PM", title: "Baile con papa", icon: <Gem size={iconSizeTimeline} className="text-primary"/> }, 
-    { time: "7:35 PM", title: "Brindis", icon: <Wine size={iconSizeTimeline} className="text-primary"/> },
-    { time: "8:30 PM", title: "Cena", icon: <Utensils size={iconSizeTimeline} className="text-primary"/> },
-    { time: "9:30 PM", title: "Inicia Fiesta", icon: <Disc3 size={iconSizeTimeline} className="text-primary"/> }, 
-    { time: "11:00 PM", title: "Hora Loca", icon: <PartyPopper size={iconSizeTimeline} className="text-primary"/> },
-    { time: "12:00 PM", title: "Pastel", icon: <CakeSlice size={iconSizeTimeline} className="text-primary"/> },
-    { time: "1:00 AM", title: "Despedida", icon: <Car size={iconSizeTimeline} className="text-primary"/> },
+    { time: "7:00 PM", title: "Bienvenida", icon: <Martini size={iconSizeTimeline} className="text-accent"/> },
+    { time: "7:30 PM", title: "Baile con papa", icon: <Gem size={iconSizeTimeline} className="text-accent"/> }, 
+    { time: "7:35 PM", title: "Brindis", icon: <Wine size={iconSizeTimeline} className="text-accent"/> },
+    { time: "8:30 PM", title: "Cena", icon: <Utensils size={iconSizeTimeline} className="text-accent"/> },
+    { time: "9:30 PM", title: "Inicia Fiesta", icon: <Disc3 size={iconSizeTimeline} className="text-accent"/> }, 
+    { time: "11:00 PM", title: "Hora Loca", icon: <PartyPopper size={iconSizeTimeline} className="text-accent"/> },
+    { time: "12:00 PM", title: "Pastel", icon: <CakeSlice size={iconSizeTimeline} className="text-accent"/> },
+    { time: "1:00 AM", title: "Despedida", icon: <Car size={iconSizeTimeline} className="text-accent"/> },
   ];
   
   if (!isOpened) {
@@ -158,7 +199,7 @@ export default function HomePage() {
       />
       
       <div 
-        className="relative z-10 flex flex-col items-center text-center max-w-2xl w-full bg-background/80 dark:bg-neutral-900/80 backdrop-blur-md rounded-xl shadow-2xl my-8 animate-in fade-in slide-in-from-bottom-10 duration-700 bg-[url('/paper-texture.jpg')] bg-cover bg-center overflow-hidden"
+        className="relative z-10 flex flex-col items-center text-center max-w-2xl w-full bg-background/80 dark:bg-neutral-900/80 backdrop-blur-md rounded-xl shadow-2xl my-8 animate-in fade-in slide-in-from-bottom-10 duration-700 bg-[url('/paper-texture.jpg')] bg-cover bg-center overflow-hidden border-2 border-decorative/20 hover:border-decorative/40 transition-colors duration-300"
       >
         <Image
           src="/flowers_deco/flowers.png"
@@ -170,47 +211,71 @@ export default function HomePage() {
         />
         
         <div className="relative z-10 flex flex-col items-center text-center space-y-8 sm:space-y-10 p-4 sm:p-8 mt-[14rem]">
-          <div className="animate-in fade-in duration-1000 delay-400 mb-4 sm:mb-6">
-            <p className="font-great-vibes text-9xl sm:text-9xl text-primary">Victoria</p>
-            <p className="font-great-vibes text-8xl sm:text-9xl text-primary">Pérez</p>
+          <AnimatedName 
+            firstName="Victoria"
+            lastName="Pérez"
+            className="mb-4 sm:mb-6"
+          />
 
+          <div 
+            id="tiara-section"
+            data-animate
+            className={`flex flex-col items-center mt-8 mb-6 transition-all duration-1000 transform ${
+              visibleElements.has('tiara-section') 
+                ? 'opacity-100 translate-y-0 rotate-0' 
+                : 'opacity-100 translate-y-0 rotate-0'
+            }`}
+          >
+            <Image src="/tiara.png" alt="Tiara" width={100} height={100} data-ai-hint="tiara crown" className="drop-shadow-lg animate-bounce-slow"/>
+            <p className="font-headline text-1xl sm:text-2xl text-primary mt-2 tracking-widest animate-fade-in-up text-visible">MIS XV AÑOS</p>
           </div>
-
-          <div className="flex flex-col items-center mt-8 mb-6 animate-in fade-in duration-1000 delay-300">
-            <Image src="/tiara.png" alt="Tiara" width={100} height={100} data-ai-hint="tiara crown" className="drop-shadow-lg"/>
-            <p className="font-headline text-1xl sm:text-2xl text-primary mt-2 tracking-widest">MIS XV AÑOS</p>
-          </div>
-
-          {/* <MusicPlayer audioSrc={audioSrc} autoPlay={isOpened} className="animate-in fade-in duration-1000 delay-500" /> */}
           
-          <Card className="bg-transparent border-none shadow-none w-full animate-in fade-in duration-1000 delay-200">
+          <Card 
+            id="intro-text"
+            data-animate
+            className={`bg-transparent border-none shadow-none w-full transition-all duration-1000 transform ${
+              visibleElements.has('intro-text') 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-100 translate-y-0'
+            }`}
+          >
             <CardContent className="font-body text-lg sm:text-xl text-foreground/80 space-y-1 pt-6">
               <br/>
-              <p>Hay momentos que marcan el alma </p>
-              <p>para siempre… y este es uno de ellos.</p>
+              <p className="animate-fade-in-left text-visible">Hay momentos que marcan el alma </p>
+              <p className="animate-fade-in-right text-visible">para siempre… y este es uno de ellos.</p>
               <br/>
-              <p>Te invito a ser parte de</p>
-              <p>este capítulo inolvidable en mi vida</p>
+              <p className="animate-fade-in-left text-visible">Te invito a ser parte de</p>
+              <p className="animate-fade-in-right text-visible">este capítulo inolvidable en mi vida</p>
             </CardContent>
           </Card>
-          <br />
-          <br />
+          
           <EventDateDisplay 
+            data-id="date-display"
+            data-animate
             monthName="Julio"
             dayName="Domingo"
             dayNumber="27"
             year="2025"
-            className="animate-in fade-in duration-1000 delay-700 text-primary mb-12"
+            className={`text-primary mb-12 transition-all duration-1000 transform ${
+              visibleElements.has('date-display') 
+                ? 'opacity-100 translate-y-0 scale-100' 
+                : 'opacity-100 translate-y-0 scale-100'
+            }`}
           />
-          <br />
-          <br />
-          <br />
-          <br />
-          <Card className="w-full max-w-md animate-in fade-in duration-1000 delay-800 mt-12 mb-4 bg-transparent border-none">
-            <CardContent className="flex flex-col items-center">
-              <p className="font-headline text-lg sm:text-xl text-foreground mt-2 tracking-widest">Tan solo faltan</p>
+          
+          <Card 
+            id="countdown-section"
+            data-animate
+            className={`w-full max-w-md mt-12 mb-4 bg-transparent border-none transition-all duration-1000 transform ${
+              visibleElements.has('countdown-section') 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-100 translate-y-0'
+            }`}
+          >
+            <CardContent className="flex flex-col items-center mt-12">
+              <p className="mb-12 font-headline text-lg sm:text-xl text-foreground mt-2 tracking-widest animate-fade-in-up text-visible">Tan solo faltan</p>
               <CountdownTimer targetDate={eventTargetDate} />
-              <p className="font-headline text-lg sm:text-xl text-foreground mt-2 tracking-widest">para este dia tan especial</p>
+              <p className="font-headline text-lg sm:text-xl text-foreground mt-12 tracking-widest animate-fade-in-up text-visible">para este dia tan especial</p>
             </CardContent>
           </Card>
 
@@ -235,34 +300,66 @@ export default function HomePage() {
             </CardContent>
           </Card>
           
-          <div className="w-full animate-in fade-in duration-1000 delay-1000">
+          {/* <div className="w-full animate-in fade-in duration-1000 delay-1000">
             <SectionCard
               title="Ceremonia Religiosa"
-              locationButton={{ text: "Ver Ubicación", url: "https://maps.app.goo.gl/urnxoQk9w1md1kYGA" }}
+              locationButtons={[
+                { 
+                  text: "Waze", 
+                  url: "https://waze.com/ul/hd1g8q8q8q", 
+                  icon: <Navigation className="mr-2 h-4 w-4" />
+                },
+                { 
+                  text: "Google Maps", 
+                  url: "https://maps.app.goo.gl/urnxoQk9w1md1kYGA", 
+                  icon: <MapPin className="mr-2 h-4 w-4" />
+                }
+              ]}
               titleClassName="text-foreground"
             >
               <div className="flex flex-col items-center space-y-2 mb-3">
-                <Image src="/church.png" alt="Iglesia Icon" width={40} height={40} className="shrink-0" data-ai-hint="church building"/>
+                <Image src="/church.png" alt="Iglesia Icon" width={40} height={40} className="shrink-0 animate-bounce-slow" data-ai-hint="church building"/>
               </div>
               <div className="mt-1 space-y-1 text-center">
-                <p className="flex items-center justify-center">Parroquia Jesús de la Divina Misericordia</p>
-                <p className="flex items-center justify-center"><i>Managua, 5:00 PM</i></p>
+                <p className="flex items-center justify-center animate-fade-in-up">Parroquia Jesús de la Divina Misericordia</p>
+                <p className="flex items-center justify-center animate-fade-in-up"><i>Managua, 5:00 PM</i></p>
               </div>
             </SectionCard>
-          </div>
+          </div> */}
           
           <div className="w-full animate-in fade-in duration-1000 delay-1100">
             <SectionCard 
               title="Recepción"
-              locationButton={{ text: "Ver Ubicación", url: "https://maps.app.goo.gl/NirirnL3kUby84ty7" }}
+              locationButtons={[
+                { 
+                  text: "Waze", 
+                  url: "https://www.waze.com/en/live-map/directions/holiday-inn-managua-convention-center-pista-heroes-de-la-insurreccion?place=w.179372153.1793852604.540644", 
+                  icon: <Navigation className="mr-2 h-4 w-4" />
+                },
+                { 
+                  text: "Google Maps", 
+                  url: "https://maps.app.goo.gl/NirirnL3kUby84ty7", 
+                  icon: <MapPin className="mr-2 h-4 w-4" />
+                }
+              ]}
               titleClassName="text-foreground"
             >
               <div className="flex flex-col items-center space-y-2 mb-3">
-                <Image src="/champagne.png" alt="champagne Icon" width={40} height={40} className="shrink-0" data-ai-hint="champagne"/>
+                <Image src="/champagne.png" alt="champagne Icon" width={40} height={40} className="shrink-0 animate-bounce-slow" data-ai-hint="champagne"/>
               </div>
               <div className="mt-1 space-y-1 text-center">
-                <p className="flex items-center justify-center">Hotel Holiday Inn</p>
-                <p className="flex items-center justify-center"><i>Managua, 7:00 PM</i></p>
+                <p className="flex items-center justify-center animate-fade-in-up">Hotel Holiday Inn</p>
+                <p className="flex items-center justify-center animate-fade-in-up"><i>Managua, 7:00 PM</i></p>
+              </div>
+              <div className="mt-4 flex justify-center">
+                <Image 
+                  src="/Holiday_inn.jpg" 
+                  alt="Hotel Holiday Inn Managua" 
+                  width={300} 
+                  height={200} 
+                  className="rounded-lg shadow-lg object-cover animate-fade-in-up" 
+                  data-ai-hint="hotel holiday inn"
+                />
               </div>
             </SectionCard>
           </div>
@@ -347,19 +444,27 @@ export default function HomePage() {
           className="relative w-full bg-[url('/flowers_deco/flowers_deco.png')] bg-contain bg-no-repeat bg-bottom"
         >
           <div className="flex flex-col items-center pt-10 pb-24 px-4">
-            <div className="flex flex-col items-center animate-in fade-in duration-1000 delay-[200ms] w-full max-w-xs">
+            <div 
+              id="confirmation-section"
+              data-animate
+              className={`flex flex-col items-center w-full max-w-xs transition-all duration-1000 transform ${
+                visibleElements.has('confirmation-section') 
+                  ? 'opacity-100 translate-y-0 scale-100' 
+                  : 'opacity-0 translate-y-8 scale-95'
+              }`}
+            >
               <Input
                 type="text"
                 placeholder="Nombre y Apellido"
                 value={guestName}
                 onChange={(e) => setGuestName(e.target.value)}
-                className="mt-4 mb-3 bg-white/80 border-primary text-center w-full max-w-[280px] placeholder:text-foreground/50"
+                className="mt-4 mb-3 bg-white/80 border-primary text-center w-full max-w-[280px] placeholder:text-foreground/50 animate-fade-in-up hover:border-decorative focus:border-decorative transition-colors duration-300"
                 aria-label="Tu nombre y apellido"
               />
               <Button
                 onClick={handleConfirm}
                 disabled={isConfirming}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-headline text-xl py-3 px-6 sm:py-4 sm:px-8 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 w-full mb-2"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-headline text-xl py-3 px-6 sm:py-4 sm:px-8 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 w-full mb-2 animate-fade-in-up"
                 aria-label="Confirmar asistencia"
               >
                 {isConfirming ? (
@@ -371,29 +476,32 @@ export default function HomePage() {
                   'Confirmar Asistencia'
                 )}
               </Button>
-              <p className="text-sm text-foreground/80 mt-2 text-center">
-                
-              </p>
             </div>
-          <br />
-          <br />
-          <br />
-            <div className="animate-in fade-in duration-1000 delay-[400ms] mt-4">
-              <p className="font-body text-lg sm:text-xl text-foreground/80 text-center px-4">¡Te esperamos! </p>
+            
+            <div 
+              id="final-message"
+              data-animate
+              className={`mt-4 transition-all duration-1000 transform ${
+                visibleElements.has('final-message') 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-8'
+              }`}
+            >
+              <p className="font-body text-lg sm:text-xl text-foreground/80 text-center px-4 animate-fade-in-up">¡Te esperamos! </p>
             </div>
           </div>
         </div>
 
         {/* Footer */}
         <footer className="w-full text-center py-4 bg-background/80 dark:bg-neutral-900/80 text-foreground/60 text-xs bg-[url('/flowers_deco/paper-texture.jpg')] bg-cover bg-center backdrop-blur-md">
-          <p className="italic">Creado por Kendyr Quintanilla </p>
+          <p className="italic animate-fade-in-up">Creado por Kendyr Quintanilla </p>
         </footer>
 
       </div>
       {showBackToTop && (
         <Button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 h-12 w-12 rounded-full bg-foreground/80 backdrop-blur-sm p-0 text-primary-foreground shadow-lg transition-transform hover:scale-110 hover:bg-primary"
+          className="fixed bottom-8 right-8 z-50 h-12 w-12 rounded-full bg-decorative/80 backdrop-blur-sm p-0 text-primary-foreground shadow-lg transition-transform hover:scale-110 hover:bg-primary"
           aria-label="Volver al inicio"
         >
           <ArrowUp className="h-6 w-6" />
