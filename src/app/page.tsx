@@ -199,7 +199,7 @@ export default function HomePage() {
       />
       
       <div 
-        className="relative z-10 flex flex-col items-center text-center max-w-2xl w-full bg-background/80 dark:bg-neutral-900/80 backdrop-blur-md rounded-xl shadow-2xl my-8 animate-in fade-in slide-in-from-bottom-10 duration-700 bg-[url('/paper-texture.jpg')] bg-cover bg-center overflow-hidden border-2 border-decorative/20 hover:border-decorative/40 transition-colors duration-300"
+        className="relative z-10 flex flex-col items-center text-center max-w-2xl w-full bg-background/80 dark:bg-neutral-900/80 backdrop-blur-md rounded-xl shadow-2xl my-8 animate-in fade-in slide-in-from-bottom-10 duration-700 bg-[url('/paper-texture1.jpg')] bg-cover bg-center overflow-hidden border-2 border-decorative/20 hover:border-decorative/40 transition-colors duration-300"
       >
         <Image
           src="/flowers_deco/flowers.png"
@@ -348,7 +348,7 @@ export default function HomePage() {
                 <Image src="/champagne.png" alt="champagne Icon" width={40} height={40} className="shrink-0 animate-bounce-slow" data-ai-hint="champagne"/>
               </div>
               <div className="mt-1 space-y-1 text-center">
-                <p className="flex items-center justify-center animate-fade-in-up">Hotel Holiday Inn</p>
+                <p className="flex items-center justify-center animate-fade-in-up">Hotel Holiday Inn, Salón Telica</p>
                 <p className="flex items-center justify-center animate-fade-in-up"><i>Managua, 7:00 PM</i></p>
               </div>
               <div className="mt-4 flex justify-center">
@@ -493,7 +493,7 @@ export default function HomePage() {
         </div>
 
         {/* Footer */}
-        <footer className="w-full text-center py-4 bg-background/80 dark:bg-neutral-900/80 text-foreground/60 text-xs bg-[url('/flowers_deco/paper-texture.jpg')] bg-cover bg-center backdrop-blur-md">
+        <footer className="w-full text-center py-4 bg-background/80 dark:bg-neutral-900/80 text-foreground/60 text-xs bg-[url('/flowers_deco/paper-texture1.jpg')] bg-cover bg-center backdrop-blur-md">
           <p className="italic animate-fade-in-up">Creado por Kendyr Quintanilla </p>
         </footer>
 
