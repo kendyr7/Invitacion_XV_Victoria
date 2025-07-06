@@ -50,9 +50,7 @@ export default function LoginPage() {
       <div className="absolute inset-0 bg-[url('/paper-texture1.jpg')] bg-cover bg-center opacity-5"></div>
       
       {/* Floating elements */}
-      <div className="absolute top-10 left-10 opacity-20 animate-bounce-slow">
-        <Crown className="h-16 w-16 text-primary" />
-      </div>
+
       <div className="absolute bottom-10 right-10 opacity-20 animate-bounce-slow" style={{ animationDelay: '1s' }}>
         <Crown className="h-12 w-12 text-secondary" />
       </div>
