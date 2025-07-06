@@ -224,7 +224,7 @@ export default function HomePage() {
       />
       
       <div 
-        className="relative z-10 flex flex-col items-center text-center max-w-2xl w-full bg-background/80 dark:bg-neutral-900/80 backdrop-blur-md rounded-xl shadow-2xl my-8 animate-in fade-in slide-in-from-bottom-10 duration-700 bg-[url('/paper-texture1.jpg')] bg-cover bg-center overflow-hidden border-2 border-decorative/20 hover:border-decorative/40 transition-colors duration-300"
+        className="relative z-10 flex flex-col items-center text-center max-w-2xl w-full bg-background/80 dark:bg-neutral-900/80 backdrop-blur-md rounded-xl shadow-2xl my-8 animate-in fade-in slide-in-from-bottom-10 duration-700 bg-[url('/paper-texture1.jpg')] bg-cover bg-center overflow-hidden border-2 border-[transparent] hover:border-[transparent] transition-colors duration-300"
       >
         <Image
           src="/flowers_deco/flowers.png"
@@ -235,11 +235,11 @@ export default function HomePage() {
           data-ai-hint="floral corner decoration"
         />
         
-        <div className="relative z-10 flex flex-col items-center text-center space-y-8 sm:space-y-10 p-4 sm:p-8 mt-[14rem]">
+        <div className="relative z-10 flex flex-col items-center text-center space-y-8 sm:space-y-10 p-4 sm:p-8 mt-[16rem]">
           <AnimatedName 
             firstName="Victoria"
             lastName="Pérez"
-            className="mb-4 sm:mb-6"
+            className="mb-6 sm:mb-8"
           />
 
           <div 
@@ -504,7 +504,7 @@ export default function HomePage() {
                 placeholder="Nombre y Apellido"
                 value={guestName}
                 onChange={(e) => setGuestName(e.target.value)}
-                className="mt-4 mb-3 bg-white/80 border-primary text-center w-full max-w-[280px] placeholder:text-foreground/50 animate-fade-in-up hover:border-decorative focus:border-decorative transition-colors duration-300"
+                className="mt-4 mb-3 bg-white/80 border-primary text-center w-full max-w-[280px] placeholder:text-foreground/50 animate-fade-in-up hover:border-[transparent] focus:border-[transparent] transition-colors duration-300"
                 aria-label="Tu nombre y apellido"
               />
               <Button
@@ -547,7 +547,7 @@ export default function HomePage() {
       {showBackToTop && (
         <Button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 h-12 w-12 rounded-full bg-decorative/80 backdrop-blur-sm p-0 text-primary-foreground shadow-lg transition-transform hover:scale-110 hover:bg-primary"
+          className="fixed bottom-8 right-8 z-50 h-12 w-12 rounded-full bg-gradient-to-r from-decorative-gradientFrom to-decorative-gradientTo backdrop-blur-sm p-0 text-primary-foreground shadow-lg transition-transform hover:scale-110 hover:bg-primary"
           aria-label="Volver al inicio"
         >
           <ArrowUp className="h-6 w-6" />

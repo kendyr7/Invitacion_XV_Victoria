@@ -1,4 +1,3 @@
-
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -30,8 +29,8 @@ export default {
           foreground: 'hsl(var(--popover-foreground))',
         },
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+          DEFAULT: '#d60102',
+          foreground: '#fff',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
@@ -70,7 +69,11 @@ export default {
           ring: 'hsl(var(--sidebar-ring))',
         },
         'link-secondary': 'hsl(var(--link-secondary))',
-        decorative: 'hsl(var(--decorative))',
+        decorative: {
+          DEFAULT: '#e0b84c',
+          gradientFrom: '#e0b84c',
+          gradientTo: '#b88a2a',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',

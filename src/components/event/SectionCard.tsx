@@ -1,4 +1,3 @@
-
 "use client";
 import type { ReactNode } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -51,7 +50,7 @@ const SectionCard: React.FC<SectionCardProps> = ({ title, icon, children, locati
                 key={index}
                 onClick={() => handleLocationClick(button.url)}
                 variant="outline"
-                className="bg-link-secondary hover:bg-link-secondary/90 text-primary-foreground border-link-secondary hover:border-link-secondary/90 mx-1"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground border-primary hover:border-primary/90 mx-1"
               >
                 {button.icon || <MapPin className="mr-2 h-4 w-4" />}
                 {button.text}

@@ -23,23 +23,24 @@ const AnimatedName: React.FC<AnimatedNameProps> = ({
 
   return (
     <div 
-      className={cn("mb-4 sm:mb-6 text-center", className)}
+      className={cn("mb-4 sm:mb-6 text-center relative w-full overflow-visible", className)}
     >
-      {/* First Name - Victoria */}
-      <p className={cn(
-        "font-great-vibes text-9xl sm:text-9xl text-primary transition-all duration-1500 ease-out",
-        isVisible ? "animate-victoriaSlideIn" : "opacity-0 translate-x-[-100%] scale-90"
-      )}>
-        {firstName}
-      </p>
-      
-      {/* Last Name - Pérez */}
-      <p className={cn(
-        "font-great-vibes text-8xl sm:text-9xl text-secondary transition-all duration-1500 ease-out",
-        isVisible ? "animate-perezSlideIn" : "opacity-0 translate-x-[100%] scale-90"
-      )}>
-        {lastName}
-      </p>
+      <div className="flex flex-col items-center w-full">
+        {/* First Name - Victoria */}
+        <p className={cn(
+          "block w-full text-center font-great-vibes text-9xl sm:text-9xl text-primary transition-all duration-1500 ease-out relative z-0",
+          isVisible ? "animate-victoriaSlideIn" : "opacity-0 translate-x-[-100%] scale-90"
+        )}>
+          {firstName}
+        </p>
+        {/* Last Name - Pérez */}
+        <p className={cn(
+          "block w-full text-center font-great-vibes text-8xl sm:text-9xl bg-gradient-to-r from-decorative-gradientFrom to-decorative-gradientTo text-transparent bg-clip-text transition-all duration-1500 ease-out leading-[1.1] pt-4 pb-2 overflow-visible break-words z-10",
+          isVisible ? "animate-perezSlideIn" : "opacity-0 translate-x-[100%] scale-90"
+        )}>
+          {lastName}
+        </p>
+      </div>
 
       <style jsx>{`
         .animate-victoriaSlideIn {
