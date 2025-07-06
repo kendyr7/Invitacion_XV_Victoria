@@ -358,7 +358,7 @@ export default function HomePage() {
               locationButtons={[
                 { 
                   text: "Waze", 
-                  url: "https://www.waze.com/en/live-map/directions/holiday-inn-managua-convention-center-pista-heroes-de-la-insurreccion?place=w.179372153.1793852604.540644", 
+                  url: "https://waze.com/ul/hd44suxjp7", 
                   icon: <Navigation className="mr-2 h-4 w-4" />
                 },
                 { 
